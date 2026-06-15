@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="ProjetC++Moderne/ProjetC++Moderne.vcxproj" Id="5ec0a4be-0629-474d-909a-8a4cb82427fe" />
+</Solution>
