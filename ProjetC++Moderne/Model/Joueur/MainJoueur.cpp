@@ -4,6 +4,7 @@
 
 void MainJoueur::recevoirCarte(std::shared_ptr<Carte> carte)
 {
+    // Ajoute une carte dans la main
     cartes.push_back(carte);
 }
 
@@ -16,6 +17,7 @@ std::shared_ptr<Carte> MainJoueur::jouerCarte(int indice)
 
     std::shared_ptr<Carte> carte = cartes[indice];
 
+    // Retire la carte de la main
     cartes.erase(cartes.begin() + indice);
 
     return carte;
@@ -50,6 +52,7 @@ std::shared_ptr<Carte> MainJoueur::retirerCarte(int indice)
 
     std::shared_ptr<Carte> carte = cartes[indice];
 
+    // Supprime la carte de la main
     cartes.erase(cartes.begin() + indice);
 
     return carte;
@@ -60,6 +63,7 @@ int MainJoueur::trouverCarte(
     const std::string& symbole
 ) const
 {
+    // Recherche une carte précise dans la main
     for (int i = 0; i < static_cast<int>(cartes.size()); i++)
     {
         if (cartes[i]->getValeur() == valeur &&
@@ -74,6 +78,7 @@ int MainJoueur::trouverCarte(
 
 bool MainJoueur::possedeSymbole(const std::string& symbole) const
 {
+    // Vérifie si le joueur possède ce symbole
     for (int i = 0; i < static_cast<int>(cartes.size()); i++)
     {
         if (cartes[i]->getSymbole() == symbole)
@@ -87,6 +92,7 @@ bool MainJoueur::possedeSymbole(const std::string& symbole) const
 
 void MainJoueur::viderMain()
 {
+    // Supprime toutes les cartes de la main
     cartes.clear();
 }
 
@@ -94,6 +100,7 @@ bool MainJoueur::possedeAutreQueSymbole(
     const std::string& symbole
 ) const
 {
+    // Vérifie s'il existe une carte d'un autre symbole
     for (int i = 0; i < static_cast<int>(cartes.size()); i++)
     {
         if (cartes[i]->getSymbole() != symbole)
@@ -110,6 +117,7 @@ bool MainJoueur::possedeCarteAutreQue(
     const std::string& symbole
 ) const
 {
+    // Vérifie s'il existe une autre carte que celle indiquée
     for (int i = 0; i < static_cast<int>(cartes.size()); i++)
     {
         if (!(cartes[i]->getValeur() == valeur &&

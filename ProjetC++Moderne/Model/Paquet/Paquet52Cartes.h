@@ -10,10 +10,13 @@
 class Paquet52Cartes : public Paquet
 {
 public:
+    // Constructeur
     Paquet52Cartes();
 
+    // Initialise les 52 cartes
     void initialiser() override;
 
+    // Destructeur
     ~Paquet52Cartes() override = default;
 };
 

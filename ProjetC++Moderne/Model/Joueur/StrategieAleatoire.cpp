@@ -10,28 +10,33 @@ std::shared_ptr<Carte> StrategieAleatoire::choisirCarte(
     const ReglesJeu& regles
 )
 {
+    // Vérifie si la main est vide
     if (main.estVide())
     {
         return nullptr;
     }
 
+    // Indices des cartes jouables
     std::vector<int> indicesPossibles;
 
     for (int i = 0; i < main.nombreCartes(); ++i)
     {
         std::shared_ptr<Carte> carte = main.getCarte(i);
 
+        // Vérifie si le coup est autorisé
         if (regles.coupAutorise(*carte, pli, main))
         {
             indicesPossibles.push_back(i);
         }
     }
 
+    // Aucun coup possible
     if (indicesPossibles.empty())
     {
         return nullptr;
     }
 
+    // Générateur aléatoire
     static std::random_device rd;
     static std::mt19937 generateur(rd());
 
@@ -40,6 +45,7 @@ std::shared_ptr<Carte> StrategieAleatoire::choisirCarte(
         static_cast<int>(indicesPossibles.size()) - 1
     );
 
+    // Choisit une carte au hasard
     int indiceChoisi = indicesPossibles[distribution(generateur)];
 
     return main.jouerCarte(indiceChoisi);
@@ -50,8 +56,10 @@ std::vector<std::shared_ptr<Carte>> StrategieAleatoire::choisirCartesAEchanger(
     int nombreCartes
 )
 {
+    // Cartes choisies pour l'échange
     std::vector<std::shared_ptr<Carte>> cartesChoisies;
 
+    // Générateur aléatoire
     static std::random_device rd;
     static std::mt19937 generateur(rd());
 
@@ -63,6 +71,7 @@ std::vector<std::shared_ptr<Carte>> StrategieAleatoire::choisirCartesAEchanger(
             main.nombreCartes() - 1
         );
 
+        // Choisit une carte au hasard
         int indiceChoisi = distribution(generateur);
         cartesChoisies.push_back(main.retirerCarte(indiceChoisi));
     }

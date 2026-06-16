@@ -1,5 +1,6 @@
 #include "StrategieHumaine.h"
 
+// Constructeur
 StrategieHumaine::StrategieHumaine(
     std::shared_ptr<InterfaceUtilisateur> uneInterface
 )
@@ -16,6 +17,7 @@ std::shared_ptr<Carte> StrategieHumaine::choisirCarte(
     int choix = -1;
     bool choixCorrect = false;
 
+    // Demande une carte jusqu'à obtenir un choix valide
     while (!choixCorrect)
     {
         interfaceUtilisateur->afficherMessage("");
@@ -58,6 +60,7 @@ std::vector<std::shared_ptr<Carte>> StrategieHumaine::choisirCartesAEchanger(
     int nombreCartes
 )
 {
+    // Cartes choisies pour l'échange
     std::vector<std::shared_ptr<Carte>> cartesChoisies;
 
     interfaceUtilisateur->afficherMessage("");

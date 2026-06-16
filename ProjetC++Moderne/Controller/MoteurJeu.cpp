@@ -3,10 +3,12 @@
 #include "FabriqueDameDePique.h"
 #include "../Model/Partie/CarteJouee.h"
 
+// Constructeur
 MoteurJeu::MoteurJeu()
 {
 }
 
+// Retourne l'instance unique du moteur
 MoteurJeu& MoteurJeu::getInstance()
 {
     static MoteurJeu instance;
@@ -15,6 +17,7 @@ MoteurJeu& MoteurJeu::getInstance()
 
 void MoteurJeu::setInterface(std::shared_ptr<InterfaceUtilisateur> interfaceVue)
 {
+    // Définit l'interface utilisée par le moteur
     interfaceUtilisateur = interfaceVue;
 }
 
@@ -22,6 +25,7 @@ int MoteurJeu::compterJoueursHumains() const
 {
     int total = 0;
 
+    // Compte les joueurs humains
     for (bool estHumain : joueursHumains)
     {
         if (estHumain)
@@ -49,6 +53,7 @@ void MoteurJeu::afficherPliCourant(const Pli& pli) const
         return;
     }
 
+    // Affiche les cartes déjà jouées dans le pli
     for (int i = 0; i < static_cast<int>(cartesJouees.size()); i++)
     {
         int indiceJoueur = cartesJouees[i].getIndiceJoueur();
@@ -83,6 +88,7 @@ std::string MoteurJeu::nomTypeEchange(int typeEchange) const
 
 void MoteurJeu::creerPartie()
 {
+    // Crée une partie de Dame de Pique
     FabriqueDameDePique fabrique;
     partieCourante = fabrique.creerPartie();
     joueursHumains.clear();
@@ -92,6 +98,7 @@ void MoteurJeu::ajouterJoueursParDefaut()
 {
     joueursHumains.clear();
 
+    // Ajout de 4 joueurs IA par défaut
     partieCourante->ajouterJoueur(
         "Joueur 1",
         std::make_unique<StrategieAleatoire>()
@@ -122,6 +129,7 @@ void MoteurJeu::afficherJoueurs() const
     const std::vector<std::unique_ptr<Joueur>>& joueurs =
         partieCourante->getJoueurs();
 
+    // Affiche la liste des joueurs
     for (int i = 0; i < static_cast<int>(joueurs.size()); i++)
     {
         interfaceUtilisateur->afficherMessage(
@@ -135,6 +143,7 @@ void MoteurJeu::afficherMains() const
     const std::vector<std::unique_ptr<Joueur>>& joueurs =
         partieCourante->getJoueurs();
 
+    // Affiche la main de chaque joueur
     for (int i = 0; i < static_cast<int>(joueurs.size()); i++)
     {
         interfaceUtilisateur->afficherMessage("");
@@ -151,10 +160,12 @@ void MoteurJeu::lancerPartie()
 {
     interfaceUtilisateur->afficherMessage("===== DEBUT DE LA PARTIE =====");
 
+    // Boucle principale de la partie
     while (!partieCourante->estTerminee())
     {
         int nombreHumainsEchange = compterJoueursHumains();
 
+        // Action avant le choix des cartes à échanger
         auto avantEchange =
             [this, nombreHumainsEchange](int indiceJoueur, int typeEchange)
             {
@@ -195,6 +206,7 @@ void MoteurJeu::lancerPartie()
                 }
             };
 
+        // Action après le choix des cartes à échanger
         auto apresEchange =
             [this](int indiceJoueur, int)
             {
@@ -219,8 +231,10 @@ void MoteurJeu::lancerPartie()
                 }
             };
 
+        // Lance une nouvelle manche
         partieCourante->nouvelleManche(avantEchange, apresEchange);
 
+        // Une manche contient 13 plis
         for (int i = 0; i < 13; i++)
         {
             interfaceUtilisateur->afficherMessage("");
@@ -233,6 +247,7 @@ void MoteurJeu::lancerPartie()
 
             int nombreHumains = compterJoueursHumains();
 
+            // Action avant qu'un joueur joue une carte
             auto avantCarte =
                 [this, &joueurs, nombreHumains](int indiceJoueur, const Pli& pli)
                 {
@@ -270,6 +285,7 @@ void MoteurJeu::lancerPartie()
                     }
                 };
 
+            // Action après qu'un joueur joue une carte
             auto apresCarte =
                 [this, &joueurs](int indiceJoueur, const Carte& carte, const Pli&)
                 {
@@ -285,6 +301,7 @@ void MoteurJeu::lancerPartie()
                     );
                 };
 
+            // Joue un pli complet
             Pli pli = partieCourante->jouerTour(
                 avantCarte,
                 apresCarte
@@ -316,6 +333,7 @@ void MoteurJeu::lancerPartie()
         const std::vector<std::unique_ptr<Joueur>>& joueurs =
             partieCourante->getJoueurs();
 
+        // Affiche les scores de la manche
         for (int i = 0; i < static_cast<int>(joueurs.size()); i++)
         {
             interfaceUtilisateur->afficherMessage(
@@ -326,6 +344,7 @@ void MoteurJeu::lancerPartie()
             );
         }
 
+        // Valide les points de la manche
         partieCourante->validerFinManche();
 
         interfaceUtilisateur->afficherScores(
@@ -349,6 +368,7 @@ void MoteurJeu::demarrer()
         "Bienvenue dans le jeu de plis !"
     );
 
+    // Boucle du menu principal
     while (choix != 0)
     {
         afficherMenuPrincipal();
@@ -363,8 +383,10 @@ void MoteurJeu::quitter()
 {
     interfaceUtilisateur->afficherMessage("Au revoir !");
 }
+
 void MoteurJeu::afficherMenuPrincipal() const
 {
+    // Affiche le menu principal
     interfaceUtilisateur->afficherMessage("");
     interfaceUtilisateur->afficherMessage("===== MENU PRINCIPAL =====");
     interfaceUtilisateur->afficherMessage("1. Dame de Pique");
@@ -376,6 +398,7 @@ void MoteurJeu::afficherMenuPrincipal() const
 
 void MoteurJeu::traiterChoixJeu(int choix)
 {
+    // Lance la Dame de Pique
     if (choix == 1)
     {
         configurerDameDePique();
@@ -398,6 +421,7 @@ void MoteurJeu::traiterChoixJeu(int choix)
         );
     }
 }
+
 void MoteurJeu::configurerDameDePique()
 {
     interfaceUtilisateur->afficherMessage("");
@@ -407,6 +431,7 @@ void MoteurJeu::configurerDameDePique()
 
     creerPartie();
 
+    // Configuration des 4 joueurs
     for (int i = 1; i <= 4; i++)
     {
         interfaceUtilisateur->afficherMessage("");

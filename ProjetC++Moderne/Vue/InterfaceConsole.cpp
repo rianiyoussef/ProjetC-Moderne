@@ -2,11 +2,13 @@
 #include <iostream>
 #include <limits>
 
+// Affiche un message simple à l’écran
 void InterfaceConsole::afficherMessage(const std::string& message)
 {
     std::cout << message << std::endl;
 }
 
+// Demande un choix à l’utilisateur
 int InterfaceConsole::demanderChoix()
 {
     int choix;
@@ -15,6 +17,7 @@ int InterfaceConsole::demanderChoix()
     return choix;
 }
 
+// Affiche les cartes de la main avec leurs indices
 void InterfaceConsole::afficherMain(const MainJoueur& main)
 {
     for (int i = 0; i < main.nombreCartes(); i++)
@@ -25,6 +28,7 @@ void InterfaceConsole::afficherMain(const MainJoueur& main)
     }
 }
 
+// Affiche les scores des joueurs
 void InterfaceConsole::afficherScores(const std::vector<std::unique_ptr<Joueur>>& joueurs)
 {
     std::cout << "\n===== SCORES =====" << std::endl;
@@ -39,6 +43,7 @@ void InterfaceConsole::afficherScores(const std::vector<std::unique_ptr<Joueur>>
     }
 }
 
+// Attend que l’utilisateur appuie sur Entrée
 void InterfaceConsole::attendreEntree()
 {
     std::cout << "Appuyez sur Entree pour continuer...";
@@ -46,6 +51,7 @@ void InterfaceConsole::attendreEntree()
     std::cin.get();
 }
 
+// Efface l’écran en affichant des lignes vides
 void InterfaceConsole::effacerEcran()
 {
     for (int i = 0; i < 40; i++)

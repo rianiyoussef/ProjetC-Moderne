@@ -10,17 +10,22 @@
 class DecorateurSymbole : public CarteDecorateur
 {
 private:
+    // Symbole de la carte
     std::string symbole;
 
 public:
+    // Constructeur
     DecorateurSymbole(std::shared_ptr<Carte> uneCarte, const std::string& unSymbole);
 
+    // Nom complet de la carte
     std::string getNom() const override;
 
+    // Destructeur
     ~DecorateurSymbole() override = default;
 
+    // Retourne le symbole
     std::string getSymbole() const override;
-    
+
 };
 
 #endif

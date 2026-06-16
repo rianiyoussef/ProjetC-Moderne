@@ -7,6 +7,7 @@ std::string CarteBase::getNom() const
 
 std::string CarteBase::afficher() const
 {
+    // Retourne le nom de la carte
     return getNom();
 }
 

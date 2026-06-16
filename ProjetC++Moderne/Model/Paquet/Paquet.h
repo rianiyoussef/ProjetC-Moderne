@@ -8,18 +8,19 @@
 #include "../Carte/Carte.h"
 
 /*
- * Classe abstraite représentant un paquet de cartes.
- * Chaque jeu possède son propre type de paquet.
+ * Classe abstraite pour un paquet de cartes.
+ * Chaque jeu peut avoir son propre paquet.
  */
 class Paquet
 {
 protected:
+    // Cartes du paquet
     std::vector<std::shared_ptr<Carte>> cartes;
 
 public:
     /*
      * Initialise les cartes du paquet.
-     * Cette méthode dépend du jeu.
+     * Dépend du jeu utilisé.
      */
     virtual void initialiser() = 0;
 
@@ -29,7 +30,7 @@ public:
     void melanger();
 
     /*
-     * Pioche la dernière carte du paquet.
+     * Pioche une carte du paquet.
      */
     std::shared_ptr<Carte> piocher();
 
@@ -43,6 +44,7 @@ public:
      */
     int nombreCartes() const;
 
+    // Destructeur
     virtual ~Paquet() = default;
 };
 
