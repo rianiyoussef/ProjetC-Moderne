@@ -8,7 +8,7 @@
 #include "../Model/Partie/Partie.h"
 #include "../Vue/InterfaceUtilisateur.h"
 #include "../Model/Joueur/StrategieAleatoire.h"
-#include "StrategieHumaine.h"
+#include "../Model/Joueur/StrategieHumaine.h"
 
 class MoteurJeu
 {

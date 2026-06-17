@@ -2,9 +2,9 @@
 #ifndef STRATEGIEHUMAINE_H
 #define STRATEGIEHUMAINE_H
 
-#include "../Model/Joueur/StrategieJoueur.h"
-#include "../Vue/InterfaceUtilisateur.h"
-#include "../Model/Regles/ReglesJeu.h"
+#include "../../Model/Joueur/StrategieJoueur.h"
+#include "../../Vue/InterfaceUtilisateur.h"
+#include "../../Model/Regles/ReglesJeu.h"
 
 #include <memory>
 #include <vector>

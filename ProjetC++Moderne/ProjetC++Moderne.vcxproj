@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -141,7 +141,6 @@
   <ItemGroup>
     <ClCompile Include="Controller\FabriqueDameDePique.cpp" />
     <ClCompile Include="Controller\MoteurJeu.cpp" />
-    <ClCompile Include="Controller\StrategieHumaine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model\Carte\CarteBase.cpp" />
     <ClCompile Include="Model\Carte\CarteDecorateur.cpp" />
@@ -151,6 +150,7 @@
     <ClCompile Include="Model\Joueur\Joueur.cpp" />
     <ClCompile Include="Model\Joueur\MainJoueur.cpp" />
     <ClCompile Include="Model\Joueur\StrategieAleatoire.cpp" />
+    <ClCompile Include="Model\Joueur\StrategieHumaine.cpp" />
     <ClCompile Include="Model\Paquet\Paquet.cpp" />
     <ClCompile Include="Model\Paquet\Paquet52Cartes.cpp" />
     <ClCompile Include="Model\Partie\CarteJouee.cpp" />
@@ -163,7 +163,6 @@
     <ClInclude Include="Controller\FabriqueDameDePique.h" />
     <ClInclude Include="Controller\FabriqueJeu.h" />
     <ClInclude Include="Controller\MoteurJeu.h" />
-    <ClInclude Include="Controller\StrategieHumaine.h" />
     <ClInclude Include="Model\Carte\Carte.h" />
     <ClInclude Include="Model\Carte\CarteBase.h" />
     <ClInclude Include="Model\Carte\CarteDecorateur.h" />
@@ -173,9 +172,11 @@
     <ClInclude Include="Model\Joueur\Joueur.h" />
     <ClInclude Include="Model\Joueur\MainJoueur.h" />
     <ClInclude Include="Model\Joueur\StrategieAleatoire.h" />
+    <ClInclude Include="Model\Joueur\StrategieHumaine.h" />
     <ClInclude Include="Model\Joueur\StrategieJoueur.h" />
     <ClInclude Include="Model\Paquet\Paquet.h" />
     <ClInclude Include="Model\Paquet\Paquet52Cartes.h" />
+    <ClInclude Include="Model\Partie\CarteJouee.h" />
     <ClInclude Include="Model\Partie\Partie.h" />
     <ClInclude Include="Model\Partie\Pli.h" />
     <ClInclude Include="Model\Regles\RegleDameDePique.h" />
